@@ -1808,7 +1808,7 @@ implements Listener
 					}
 				}
 				if (ar != null){
-					if (!(ar.gamestate == "end")){
+					if (!("end".equals(ar.gamestate))){
 						if (e.getClickedBlock().getType() == Material.ENDER_CHEST && ar.gamestate == "waiting"){
 							p.sendMessage(mf.getMessage("enderchestnotinagme", true));
 							e.setCancelled(true);
@@ -1821,7 +1821,7 @@ implements Listener
 				}
 			}
 		} catch (Exception e1) {
-
+			e1.printStackTrace();
 		}
 	}
 	

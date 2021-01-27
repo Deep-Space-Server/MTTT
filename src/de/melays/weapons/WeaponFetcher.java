@@ -192,7 +192,7 @@ public class WeaponFetcher {
 		}
 		else{
 			plugin.sd.playSound(p , "CLICK", "BLOCK_LEVER_CLICK" );
-			remchest = false;
+			remchest = true;
 		}
 		
 		return remchest;
