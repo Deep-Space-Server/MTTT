@@ -65,7 +65,7 @@ public class TesterSetup implements Listener{
 			if (e.getAction() == Action.RIGHT_CLICK_BLOCK){
 				if (e.getPlayer().getItemInHand().getType() == Material.BLAZE_POWDER){
 					if (e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals(ChatColor.YELLOW+"TESTER LAMP AND BUTTON TOOL")){
-						if (e.getClickedBlock().getType() == Material.REDSTONE_LAMP_OFF){
+						if (e.getClickedBlock().getType() == Material.REDSTONE_LAMP){
 							if (plugin.getConfig().get(players.get(e.getPlayer())+".tester.lamp.1.x")==null){
 								locationToConfig(e.getClickedBlock().getLocation() , players.get(e.getPlayer())+".tester.lamp.1");
 								plugin.saveConfig();

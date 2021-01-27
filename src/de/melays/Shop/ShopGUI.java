@@ -1,17 +1,16 @@
 package de.melays.Shop;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Effect;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import de.melays.ttt.Arena;
-
-import org.bukkit.ChatColor;
 
 public class ShopGUI {
 	
@@ -41,7 +40,7 @@ public class ShopGUI {
 	}
 	
 	public void callClickEvent (InventoryClickEvent e){
-		if (e.getCurrentItem().getItemMeta() != null){
+		if (e.getCurrentItem() != null && e.getCurrentItem().getItemMeta() != null){
 			if (e.getCurrentItem().getItemMeta().getDisplayName().startsWith(ChatColor.YELLOW+"TNT Arrows")){
 				if (arena.shop.removePoints((Player)e.getWhoClicked(), 2)){
 					e.getWhoClicked().getInventory().addItem(new ShopItem().getCreeperArrows(false));
@@ -67,14 +66,14 @@ public class ShopGUI {
 				if (arena.shop.removePoints((Player)e.getWhoClicked(), 5)){
 					if (arena.atester.enabled){
 						for (Location l : arena.atester.buttons){
-							l.getWorld().playEffect(l, Effect.EXPLOSION , 5);
+							l.getWorld().spawnParticle(Particle.EXPLOSION_NORMAL, l, 5);
 							arena.plugin.sd.playSound(l.getWorld(), l , "EXPLODE", "ENTITY_GENERIC_EXPLODE" );
 						}
 						arena.atester.destroyed = false;
 					}
 					else if (arena.tester){
 						arena.tester = false;
-						arena.testerlocation.getWorld().playEffect(arena.testerlocation, Effect.EXPLOSION , 5);
+						arena.testerlocation.getWorld().spawnParticle(Particle.EXPLOSION_NORMAL, arena.testerlocation, 5);
 						arena.plugin.sd.playSound(arena.testerlocation.getWorld(), arena.testerlocation , "EXPLODE", "ENTITY_GENERIC_EXPLODE" );
 						e.getWhoClicked().sendMessage(arena.plugin.mf.getMessage("testershutdown" , true));
 					}

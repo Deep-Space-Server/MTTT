@@ -16,6 +16,7 @@ import org.bukkit.Effect;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -554,7 +555,7 @@ public class Arena
 					  p.setFoodLevel(20);
 				  }
 				  if (sign != null){
-					  if (sign.getBlock().getType() == Material.SIGN || sign.getBlock().getType() == Material.SIGN_POST || sign.getBlock().getType() == Material.WALL_SIGN){
+					  if (sign.getBlock().getType() == Material.OAK_SIGN || sign.getBlock().getType() == Material.OAK_WALL_SIGN){
 						  Sign s = (Sign) sign.getBlock().getState();
 						  s.setLine(0, plugin.mf.getMessage("signtop", false));
 						  s.setLine(1, plugin.mf.getMessage("signwaiting", false).replace("%counter%" , Integer.toString(counter)));
@@ -580,7 +581,7 @@ public class Arena
 					  sendArenaMessage(plugin.mf.getMessage("countdownend", true).replace("%counter%", Integer.toString(counter)));
 				  }
 				  if (sign != null){
-					  if (sign.getBlock().getType() == Material.SIGN || sign.getBlock().getType() == Material.SIGN_POST || sign.getBlock().getType() == Material.WALL_SIGN){
+					  if (sign.getBlock().getType() == Material.OAK_SIGN || sign.getBlock().getType() == Material.OAK_WALL_SIGN){
 						  Sign s = (Sign) sign.getBlock().getState();
 						  s.setLine(0, plugin.mf.getMessage("signtop", false));
 						  s.setLine(1, plugin.mf.getMessage("signingame", false).replace("%counter%" , Integer.toString(counter)));
@@ -628,7 +629,7 @@ public class Arena
 						  p.setFoodLevel(20);
 					  }
 					  if (sign != null){
-						  if (sign.getBlock().getType() == Material.SIGN || sign.getBlock().getType() == Material.SIGN_POST || sign.getBlock().getType() == Material.WALL_SIGN){
+						  if (sign.getBlock().getType() == Material.OAK_SIGN || sign.getBlock().getType() == Material.OAK_WALL_SIGN){
 							  Sign s = (Sign) sign.getBlock().getState();
 							  s.setLine(0, plugin.mf.getMessage("signtop", false));
 							  s.setLine(1, plugin.mf.getMessage("signending", false).replace("%counter%" , Integer.toString(counter)));
@@ -798,11 +799,9 @@ public class Arena
   
   public void callClickEvent (InventoryClickEvent e){
 	  this.specinv.onClick(e);
-	  if (e.getInventory().getName().equals("Shop") || e.getWhoClicked().getOpenInventory().getTopInventory().getName().equals("Shop")){
+	  if (e.getView().getTitle().equals("Shop")){
 		  e.setCancelled(true);
-		  if (e.getInventory().getName().equals("Shop")){
-			  shopgui.callClickEvent(e);
-		  }
+		  shopgui.callClickEvent(e);
 	  }
   }
   
@@ -962,7 +961,7 @@ public class Arena
 	        		  Bukkit.getScheduler().cancelTask(legendscheduler.get(loc));
 	        	  }
 	        	  int id = legendscheduler.get(loc);
-	        	  particles.get(position.get(id)).getWorld().playEffect(particles.get(position.get(id)), Effect.HAPPY_VILLAGER, 2);
+	        	  particles.get(position.get(id)).getWorld().spawnParticle(Particle.VILLAGER_HAPPY, particles.get(position.get(id)), 2);
 	        	  if (position.get(id) == 24){
 	        		  position.put(id, 0);
 	        	  }
@@ -1122,7 +1121,7 @@ public void callArrowHitEvent (ProjectileHitEvent e){
 		  
 		  removeInventoryItems(p.getInventory() , Material.TNT , 1);
 		  plugin.sd.playSound(e.getEntity().getWorld(), e.getEntity().getLocation() , "EXPLODE", "ENTITY_GENERIC_EXPLODE" );
-		  e.getEntity().getWorld().playEffect(e.getEntity().getLocation(), Effect.EXPLOSION , 17);
+		  e.getEntity().getWorld().spawnParticle(Particle.EXPLOSION_NORMAL, e.getEntity().getLocation(), 17);
 		  //e.getEntity().getWorld().playSound(e.getEntity().getLocation(), Sound.EXPLODE, 2, 1);
 		  List<Entity> list = e.getEntity().getNearbyEntities(1.5, 1.5, 1.5);
 		  for (Entity en : list){
@@ -1139,8 +1138,8 @@ public void callArrowHitEvent (ProjectileHitEvent e){
 	  lamp2.getBlock().setType(Material.GLOWSTONE);
 	  plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 		  public void run() {
-			  lamp1.getBlock().setType(Material.REDSTONE_LAMP_OFF);
-			  lamp2.getBlock().setType(Material.REDSTONE_LAMP_OFF);
+			  lamp1.getBlock().setType(Material.REDSTONE_LAMP);
+			  lamp2.getBlock().setType(Material.REDSTONE_LAMP);
 		  }
 	  }, 40L);
   }
@@ -1201,7 +1200,7 @@ public void callArrowHitEvent (ProjectileHitEvent e){
 				  else{
 					  e.getPlayer().sendMessage(plugin.mf.getMessage("corpsefoundtwice", true).replace("%role%", plugin.getDisplay(role , false)).replace("%player%", player));
 				  }
-				  ItemStack skull = new ItemStack(Material.SKULL_ITEM);
+				  ItemStack skull = new ItemStack(Material.PLAYER_HEAD);
 				  String headName = player;
 				  skull.setDurability((short)3);
 				  SkullMeta sm = (SkullMeta)skull.getItemMeta();

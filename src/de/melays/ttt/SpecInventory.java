@@ -27,7 +27,7 @@ public class SpecInventory implements Listener {
 		if (a.new_specmode) {
 			Inventory inv = Bukkit.createInventory(null, ((a.getAmountPlaying() / 9)+1) * 9, a.plugin.mf.getMessage("specinv", true));
 			for (Player tttp : players){
-				inv.addItem(new ItemBuilder(Material.SKULL_ITEM , 1 , (byte) 3).setSkullOwner(tttp.getName()).setName(ChatColor.YELLOW + tttp.getName()).toItemStack());
+				inv.addItem(new ItemBuilder(Material.PLAYER_HEAD, 1).setSkullOwner(tttp.getName()).setName(ChatColor.YELLOW + tttp.getName()).toItemStack());
 			}
 			p.openInventory(inv);
 		}
@@ -39,9 +39,9 @@ public class SpecInventory implements Listener {
 			Player p = (Player)e.getWhoClicked();
 			if (a.specs.contains(p)){
 				e.setCancelled(true);
-				if (e.getClickedInventory().getName().equals(a.plugin.mf.getMessage("specinv", true))){
+				if (e.getView().getTitle().equals(a.plugin.mf.getMessage("specinv", true))){
 					ItemStack stack = e.getCurrentItem();
-					if (stack.getType() == Material.SKULL_ITEM){
+					if (stack.getType() == Material.PLAYER_HEAD){
 						Player temp = Bukkit.getPlayer(stack.getItemMeta().getDisplayName().replaceAll(ChatColor.YELLOW+"", ""));
 						if (a.plugin.m.searchPlayer(temp) != null) {
 							if (a.plugin.m.searchPlayer(temp).name == a.name){

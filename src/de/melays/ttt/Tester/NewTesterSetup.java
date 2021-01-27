@@ -29,12 +29,12 @@ public class NewTesterSetup implements Listener{
 	
 	public void giveTools(Player p , String arena){
 		
-		ItemStack lamp = new ItemStack (Material.WOOD_HOE);
+		ItemStack lamp = new ItemStack (Material.WOODEN_HOE);
 		ItemMeta metalamp = lamp.getItemMeta();
 		metalamp.setDisplayName(plugin.prefix + ChatColor.YELLOW+"Tester Tool");
 		lamp.setItemMeta(metalamp);
 		
-		ItemStack selec = new ItemStack (Material.WOOD_HOE);
+		ItemStack selec = new ItemStack (Material.WOODEN_HOE);
 		ItemMeta selecm = lamp.getItemMeta();
 		selecm.setDisplayName(plugin.prefix + ChatColor.RED+"Area Selection Tool");
 		selec.setItemMeta(selecm);
@@ -81,7 +81,7 @@ public class NewTesterSetup implements Listener{
 				if (!e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals(plugin.prefix + ChatColor.RED+"Area Selection Tool")){
 					return;
 				}
-				if (e.getPlayer().getItemInHand().getType() == Material.WOOD_HOE && (e.getAction() == Action.LEFT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_BLOCK)){
+				if (e.getPlayer().getItemInHand().getType() == Material.WOODEN_HOE && (e.getAction() == Action.LEFT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_BLOCK)){
 					
 					if (!markers.containsKey(e.getPlayer())){
 						markers.put(e.getPlayer(), new LocationMarker(e.getPlayer()));
@@ -167,7 +167,7 @@ public class NewTesterSetup implements Listener{
 		try{
 			Player p= e.getPlayer();
 			if (players.containsKey(e.getPlayer())){
-				if (e.getPlayer().getItemInHand().getType() == Material.WOOD_HOE){
+				if (e.getPlayer().getItemInHand().getType() == Material.WOODEN_HOE){
 						if (!e.getPlayer().getItemInHand().getItemMeta().getDisplayName().equals(plugin.prefix + ChatColor.YELLOW+"Tester Tool"))return;
 						if (e.getAction() == Action.RIGHT_CLICK_BLOCK){
 							p.sendMessage(plugin.prefix + "Removed " + clearBlocks(players.get(p) , e.getClickedBlock().getLocation()) + " Blocks from the config!");

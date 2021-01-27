@@ -8,10 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-import org.stats.MetricsLite;
-
-import com.shampaggon.crackshot.CSUtility;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -65,6 +61,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
 import org.mcstats.Metrics;
 
+import com.shampaggon.crackshot.CSUtility;
+
 import de.melays.Sound.SoundDebugger;
 import de.melays.statsAPI.StatsAPI;
 import de.melays.ttt.Tester.NewTesterSetup;
@@ -72,7 +70,6 @@ import de.melays.ttt.Tester.TesterSetup;
 import de.melays.ttt.api.TTTApi;
 import de.melays.ttt.multispawn.MultiSpawn;
 import de.melays.ttt.multispawn.MultiSpawnCommand;
-import de.melays.ttt.placeholderAPI.PlaceHolderAPIExpansion;
 import de.melays.weapons.WeaponFetcher;
 
 
@@ -344,7 +341,7 @@ implements Listener
 		if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")){
 			
 			System.out.println("[MTTT] Hooking into PlaceholderAPI ...");
-			new PlaceHolderAPIExpansion(this).register();
+//			new PlaceHolderAPIExpansion(this).register(); TODO
 			System.out.println("[MTTT] Succesfully hooked into PlaceholderAPI !");
 			
 		}
@@ -467,7 +464,7 @@ implements Listener
 				Metrics metrics = new Metrics(this);
 				metrics.start();
 				System.out.println("[MTTT] Sending Metrics to mcstats.org");
-				new MetricsLite(this);
+//				new MetricsLite(this);
 				System.out.println("[MTTT] Sending Metrics to bstats.org");
 			} catch (Exception e) {
 				// Failed to submit the stats :-(
@@ -1803,7 +1800,7 @@ implements Listener
 			Player p = e.getPlayer();
 			Arena ar = m.searchPlayer(p);
 			if (e.getAction() == Action.RIGHT_CLICK_BLOCK){
-				if (e.getClickedBlock().getType() == Material.SIGN || e.getClickedBlock().getType() == Material.SIGN_POST || e.getClickedBlock().getType() == Material.WALL_SIGN){
+				if (e.getClickedBlock().getType() == Material.OAK_SIGN || e.getClickedBlock().getType() == Material.OAK_WALL_SIGN){
 					Sign s = (Sign) e.getClickedBlock().getState();
 					if (s.getLine(0).equals(mf.getMessage("signtop", false))){
 						String [] args = {"join" , s.getLine(2)};
@@ -1996,7 +1993,7 @@ implements Listener
 	public void farmlandProtect (PlayerInteractEvent event)
 	{
 		Player p = event.getPlayer();
-		if(event.getAction() == Action.PHYSICAL && event.getClickedBlock().getType() == Material.SOIL){
+		if(event.getAction() == Action.PHYSICAL && event.getClickedBlock().getType() == Material.FARMLAND){
 			Arena a2 = m.searchPlayer(p);
 			if (a2 != null){
 				event.setCancelled(true);

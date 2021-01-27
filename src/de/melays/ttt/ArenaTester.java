@@ -41,13 +41,13 @@ public class ArenaTester {
 		byte data = (byte) plugin.getConfig().getInt("tester."+role+"_lamp.data");
 		for (Location loc : lamps){
 			loc.getBlock().setType(m);
-			loc.getBlock().setData(data);
+//			loc.getBlock().setData(data);
 		}
 	}
 	
 	public void disableLamps(){
 		for (Location loc : lamps){
-			loc.getBlock().setType(Material.REDSTONE_LAMP_OFF);
+			loc.getBlock().setType(Material.REDSTONE_LAMP);
 		}
 	}
 	
@@ -99,7 +99,7 @@ public class ArenaTester {
 				if (loc.getBlock().getType().equals(Material.STONE_BUTTON)){
 					buttons.add(loc.getBlock().getLocation());
 				}
-				else if (loc.getBlock().getType().equals(Material.REDSTONE_LAMP_OFF) || loc.getBlock().getType().equals(Material.GLOWSTONE)){
+				else if (loc.getBlock().getType().equals(Material.REDSTONE_LAMP) || loc.getBlock().getType().equals(Material.GLOWSTONE)){
 					lamps.add(loc.getBlock().getLocation());
 				}
 				else if (loc.getBlock().getType().equals(Material.DIAMOND_BLOCK) || loc.getBlock().getType().equals(Material.REDSTONE_BLOCK)){

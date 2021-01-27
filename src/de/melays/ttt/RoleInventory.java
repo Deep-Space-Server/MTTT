@@ -38,8 +38,8 @@ public class RoleInventory implements Listener {
 				msg = plugin.mf.getMessage("roleinventoryselected", true).replace("%role%", plugin.getDetectiveDisplay(false));
 			}
 			inv = Bukkit.createInventory(null, 9 , msg);
-			inv.setItem(2, new ItemBuilder(Material.WOOL , 1, (byte) 14).setName(plugin.getTraitorDisplay(false)).addLoreLine(ChatColor.RESET + "Passes: " + plugin.karma.getPasses(tp.getPlayer().getUniqueId())).toItemStack());
-			inv.setItem(6, new ItemBuilder(Material.WOOL , 1, (byte) 11).setName(plugin.getDetectiveDisplay(false)).addLoreLine(ChatColor.RESET + "Passes: " + plugin.karma.getPasses(tp.getPlayer().getUniqueId())).toItemStack());
+			inv.setItem(2, new ItemBuilder(Material.RED_WOOL , 1, (byte) 14).setName(plugin.getTraitorDisplay(false)).addLoreLine(ChatColor.RESET + "Passes: " + plugin.karma.getPasses(tp.getPlayer().getUniqueId())).toItemStack());
+			inv.setItem(6, new ItemBuilder(Material.BLUE_WOOL, 1, (byte) 11).setName(plugin.getDetectiveDisplay(false)).addLoreLine(ChatColor.RESET + "Passes: " + plugin.karma.getPasses(tp.getPlayer().getUniqueId())).toItemStack());
 			fillPanes(inv);
 			p.openInventory(inv);
 		}
@@ -49,7 +49,7 @@ public class RoleInventory implements Listener {
 		int counter = 0;
 		for (ItemStack s : inv.getContents()){
 			if (s == null){
-				s = new ItemStack (Material.STAINED_GLASS_PANE , 1 ,  (byte)7);
+				s = new ItemStack (Material.GRAY_STAINED_GLASS_PANE, 1);
 				ItemMeta m = s.getItemMeta();
 				m.setDisplayName(" ");
 				s.setItemMeta(m);

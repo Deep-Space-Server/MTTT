@@ -61,6 +61,7 @@ public class Rank {
 	HashMap<Integer , String> keylist = new HashMap<Integer , String>();
 	
 	public void load (){
+		if(getRanks().getConfigurationSection("ranks") == null) return;
 		keylist = new HashMap<Integer , String>();
 		ArrayList<String> keys = new ArrayList<String> (getRanks().getConfigurationSection("ranks").getKeys(false));
 		Collections.sort(keys);

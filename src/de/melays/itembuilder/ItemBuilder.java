@@ -216,18 +216,6 @@ public class ItemBuilder {
      return this;
    }
    /**
-    * Sets the dye color of a wool item. Works only on wool.
-    * @deprecated As of version 1.2 changed to setDyeColor.
-    * @see ItemBuilder@setDyeColor(DyeColor)
-    * @param color The DyeColor to set the wool item to.
-    */
-   @Deprecated
-   public ItemBuilder setWoolColor(DyeColor color){
-    if(!is.getType().equals(Material.WOOL))return this;
-    this.is.setDurability(color.getDyeData());
-    return this;
-   }
-   /**
     * Sets the armor color of a leather armor piece. Works only on leather armor pieces.
     * @param color The color to set it to.
     */
