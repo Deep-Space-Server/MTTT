@@ -759,6 +759,8 @@ public class Arena
 		  else{
 			  p.teleport(game);
 		  }
+		  p.setHealth(20);
+		  p.setSaturation(20);
 		  p.getInventory().clear();
 		  p.getInventory().setArmorContents(new ItemStack[p.getInventory().getArmorContents().length]);
 		  if (plugin.nicknamer){
@@ -1310,6 +1312,8 @@ public void leave(Player p , boolean silent){
 	  spoofs = new ArrayList<Player>();
 	  for (Player p : getPlayerList()){
 		  p.eject();
+		  p.setHealth(20);
+		  p.setSaturation(20);
 		  p.getInventory().clear();
 		  p.setLevel(0);
 	  }
@@ -1439,6 +1443,8 @@ public void join(Player p){
 	  if (gamestate.equals("waiting")){
 		  sendArenaMessage(plugin.mf.getMessage("join", true).replace("%player%", p.getName()));
 		  players.add(p);
+		  p.setHealth(20);
+		  p.setSaturation(20);
 		  p.getInventory().clear();
 		  p.getInventory().setArmorContents(new ItemStack[p.getInventory().getArmorContents().length]);
 		  int slotrole = plugin.getConfig().getInt("roleitem_slot");
